@@ -20,26 +20,23 @@ import optics.repository.flights
 val modifyStreetName: Lens<Street, String> = Street.name
 
 //create a Lens to modify a Street name
-val modifyAddressStreet: Lens<Address, Street> = Address.street
+val modifyAddressStreet: Lens<Address, Street> = TODO()
 
 //create a Lens to modify a Passenger address
-val modifyPassengerAddress: Lens<Passenger, Address> = Passenger.address
+val modifyPassengerAddress: Lens<Passenger, Address> = TODO()
 
 //create a Prism that will modify a PersonOnFlight if they are a passenger
-val modifyPassenger: Prism<PersonOnFlight, Passenger> = PersonOnFlight.passenger
+val modifyPassenger: Prism<PersonOnFlight, Passenger> = TODO()
 
 //create a Optional that will modify the PersonOnFlight at location 2
-val modifyPersonOnFlightLoc2: Optional<Flight, PersonOnFlight> =
-        Flight.manifest.index(NonEmptyList.index(), 2)
+val modifyPersonOnFlightLoc2: Optional<Flight, PersonOnFlight> = TODO()
+
+//create an Traversal that will modify the Flight at location 1: Hint use Index
+val modifyFlightLoc1: Optional<Flights, Flight> = TODO()
 
 
 //create an Traversal that will modify the Flight at location 1
-val modifyFlightLoc1 = Flights.flights.index(ListK.index(), 1)
-
-
-
-//create an Traversal that will modify the Flight at location 1
-val modifyAllFlights: Traversal<Flights, Flight> = Flights.flights.every(ListK.each())
+val modifyAllFlights: Traversal<Flights, Flight> = TODO()
 
 
 /**

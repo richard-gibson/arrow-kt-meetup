@@ -15,41 +15,17 @@ import io.hexlabs.flights.User
  */
 object OptFlights {
 
-    fun userByName(name: String): Option<User> =
-            Option.fromNullable(users.firstOrNull { it.name == name })
+    fun userByName(name: String): Option<User> = TODO()
 
-    fun manifestsContainingUser(user: User): Option<Nel<FlightManafest>> =
-            Nel.fromList(flightManafests.filter { fm -> fm.passengers.contains(user.id) })
+    fun manifestsContainingUser(user: User): Option<Nel<FlightManafest>> = TODO()
 
-    fun flightById(flightNo: Int): Option<Flight> =
-            Option.fromNullable(flights.firstOrNull { it.flightNo == flightNo })
+    fun flightById(flightNo: Int): Option<Flight> = TODO()
 
-  fun userFlightsFlatMap(name:String): Option<Nel<Flight>> =
-      try {
-        userByName(name)
-            .flatMap{ user -> manifestsContainingUser(user) }
-            .flatMap { manifests -> manifests.map{ flightById(it.flightNo) }.sequence() }
+    fun userFlightsFlatMap(name: String): Option<Nel<Flight>> = TODO()
 
-      } catch (e: Exception) {
-        println("Something went wrong ${e.message}")
-        throw e
-      }
-
-    fun userFlights(name: String): Option<Nel<Flight>> =
-            try {
-                Option.fx {
-                    val user = !userByName(name)
-                    val manifests = !manifestsContainingUser(user)
-                    val optFlights = manifests.map { flightById(it.flightNo) }
-                    !optFlights.sequence()
-                }
+    fun userFlights(name: String): Option<Nel<Flight>> = TODO()
 
 
-            } catch (e: Exception) {
-                println("Something went wrong ${e.message}")
-                throw e
-            }
-
-  fun <T> Nel<Option<T>>.sequence(): Option<Nel<T>> =
-      this.sequence(Option.applicative()).fix()
+    fun <T> Nel<Option<T>>.sequence(): Option<Nel<T>> =
+            this.sequence(Option.applicative()).fix()
 }

@@ -24,32 +24,18 @@ class MEFlights<F, E>(val ME: MonadError<F, E>, val FunctK: FunctionK<ForOption,
     fun <T> Nel<Kind<F, T>>.sequence(): Kind<F, Nel<T>> =
             this.sequence(ME)
 
-    fun userByName(name: String): Kind<F, User> =
-            FunctK(users.firstOrNull { it.name == name }.toOption())
+    fun userByName(name: String): Kind<F, User> = TODO()
 
-    fun manifestsContainingUser(user: User): Kind<F, Nel<FlightManafest>> =
-            FunctK(Nel.fromList(flightManafests.filter { fm -> fm.passengers.contains(user.id) }))
+    fun manifestsContainingUser(user: User): Kind<F, Nel<FlightManafest>> = TODO()
 
 
-    fun flightById(flightNo: Int): Kind<F, Flight> =
-            FunctK(flights.firstOrNull { it.flightNo == flightNo }.toOption())
+    fun flightById(flightNo: Int): Kind<F, Flight> = TODO()
 
-    fun flightsFromManifests(manifests: Nel<FlightManafest>): Kind<F, Nel<Flight>> =
-            manifests.map { flightById(it.flightNo) }.sequence()
+    fun flightsFromManifests(manifests: Nel<FlightManafest>): Kind<F, Nel<Flight>> = TODO()
 
-    fun userFlights(name: String): Kind<F, Nel<Flight>> =
-            ME.fx.monad {
-                val user = !userByName(name)
-                val manifests = !manifestsContainingUser(user)
-                !flightsFromManifests(manifests)
-            }
+    fun userFlights(name: String): Kind<F, Nel<Flight>> = TODO()
 
-    fun userFlightsFM(name: String): Kind<F, Nel<Flight>> =
-            userByName(name).flatMap { user ->
-                manifestsContainingUser(user).flatMap { manifests ->
-                    flightsFromManifests(manifests)
-                }
-            }
+    fun userFlightsFM(name: String): Kind<F, Nel<Flight>> = TODO()
 }
 
 typealias EitherEmpty = EitherPartialOf<FlightFailure>

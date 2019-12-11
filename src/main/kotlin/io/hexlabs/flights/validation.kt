@@ -23,41 +23,20 @@ fun <A, B> Either<A, B>.toValidatedNel(): ValidatedNel<A, B> =
 fun nonBlank(fieldName: String, data: String): Either<Failure, String> =
         data.right().ensure({ EmptyString("$fieldName cannot be blank") }, { it.isNotEmpty() })
 
-fun inRange(lower: Int, upper: Int, data: Int): Either<Failure, Int> =
-        data.right().ensure({ ValueOutOfRange(data) }, { it in lower..upper })
+fun inRange(lower: Int, upper: Int, data: Int): Either<Failure, Int> = TODO()
 
-fun validZip(data: String): Either<Failure, String> =
-        data.right().ensure({ InvalidCity(data) }, { it in zips })
+fun validZip(data: String): Either<Failure, String> = TODO()
 
-fun validCities(data: String): Either<Failure, String> =
-        data.right().ensure({ InvalidCity(data) }, { it in cities })
+fun validCities(data: String): Either<Failure, String> = TODO()
 
 //Validate and build an employee using bind
 fun empEitherFromMonad(name: String, zipCode: String, city: String, salary: Int): Either<Failure, Employee> =
-        Either.fx {
-            val n = !nonBlank("name", name)
-            val z = !validZip(zipCode)
-            val c = !validCities(city)
-            val s = inRange(10, 20, salary).bind()
-            Employee(n, z, c, s)
-        }
+       TODO()
 
 //Validate and build an employee using applicative map
 fun empEitherFromApp(name: String, zipCode: String, city: String, salary: Int): Either<Failure, Employee> =
-        Either.applicative<Failure>().map(
-                nonBlank("name", name),
-                validZip(zipCode),
-                validCities(city),
-                inRange(10, 20, salary)) { (n, z, c, s) ->
-            Employee(n, z, c, s)
-        }.fix()
+        TODO()
 
 //Validate and build an employee using Validated
 fun empValidatedFromApp(name: String, zipCode: String, city: String, salary: Int): Validated<Nel<Failure>, Employee> =
-        Validated.applicativeError<Nel<Failure>>(NonEmptyList.semigroup()).map(
-                nonBlank("name", name).toValidatedNel(),
-                validZip(zipCode).toValidatedNel(),
-                validCities(city).toValidatedNel(),
-                inRange(10, 20, salary).toValidatedNel()) { (n, z, c, s) ->
-            Employee(n, z, c, s)
-        }.fix()
+       TODO()
