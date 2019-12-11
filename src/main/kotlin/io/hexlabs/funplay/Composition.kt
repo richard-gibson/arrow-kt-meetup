@@ -37,13 +37,13 @@ object Functions {
 
 
     // use subtract to give the answer for 4 - 2
-    val twoTimesFour: Int = TODO()
+    val twoMinusFour: Int = TODO()
 
     //use divide to give answer for 8 /4
     val eightByFour: Int = TODO()
 
     //create a new function from plus that will increment by 2
-    val incrementBy2: Int = TODO()
+    val incrementBy2: (Int) -> Int = TODO()
 
     //create a new function from subtract that will decrement by 3
     val decrementBy3: (Int) -> Int = TODO()
